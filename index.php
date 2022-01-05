@@ -1,3 +1,13 @@
+<?php
+
+    session_start();
+
+    if(isset( $_SESSION['Nombre'])){
+        header("location: services.php");
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,26 +45,21 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo me-auto">
                 <img src="assets/img/tescha1.jpg" alt="imagen" height="120" width="180"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0 ">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <div class="header_account_area">
-                        <div class="header_account_list register"></div>
-                        <ul>
-                            <li><a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
-                        </ul>
-                    </div>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="portfolio.php">Portfolio</a></li>
+                    <li><a href="pricing.php">Pricing</a></li>
+                    <li><a href="blog.php">Blog</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -73,7 +78,7 @@
                     <h2>Home</h2>
                     <ol>
                         <li>
-                            <a href="index.html"></a>
+                            <a href="index.php"></a>
                         </li>
 
                     </ol>
@@ -86,10 +91,7 @@
     <!-- End #main -->
     <section class="slider_section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-6">
-
-                </div>
+            <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -119,6 +121,14 @@
                                     <p>Some representative placeholder content for the third slide.</p>
                                 </div>
                             </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
                         </div>
                     </div>
                 </div>
@@ -165,10 +175,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <form action="#">
+                                <form action="forms/login.php" method="POST">
                                     <div class="mb-4">
                                         <label form="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email">
+                                        <input type="correo" class="form-control" name="correo">
                                     </div>
                                     <div class=" mb-4 ">
                                         <label form="password" class="form-label">Password</label>
@@ -181,10 +191,6 @@
                                     </div>
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-success">Iniciar Sesión</button>
-                                    </div>
-                                    <div class="my-3">
-                                        <span>No tienes cuenta? <a href="#">Registrate</a></span><br>
-                                        <span><a href="#">Recuperar Password</a></span>
                                     </div>
                                 </form>
 

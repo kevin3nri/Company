@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+
+<?php
+
+session_start();
+
+if(!isset($_SESSION['Nombre'])){
+    echo'
+        <script>
+            alert("Por favor debes iniciar sesión");
+            window.location = "index.php";
+        </script>
+    ';
+    session_destroy();
+    die();
+}
+
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,26 +48,21 @@
 
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo me-auto">
                 <img src="assets/img/tescha1.jpg" alt="imagen" height="120" width="180"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <div class="header_account_area">
-                        <div class="header_account_list register"></div>
-                        <ul>
-                            <li><a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
-                        </ul>
-                    </div>
+                <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="portfolio.php">Portfolio</a></li>
+                    <li><a href="pricing.php">Pricing</a></li>
+                    <li><a href="blog.php">Blog</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -69,7 +80,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Pricing</h2>
                     <ol>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li>Pricing</li>
                     </ol>
                 </div>
