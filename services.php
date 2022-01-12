@@ -102,35 +102,25 @@
     <section class="slider_section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-14">
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">GRUPO</th>
                                 <th scope="col">DOCENCIA</th>
                                 <th scope="col">ACTIVIDAD</th>
-                                <th scope="col">ACCION</th>
-                                <th scope="col">ARCHIVO</th>
+                                <th scope="col">SUBACTIVIDAD</th>
+                                <th scope="col">SUBACTIVIDAD</th>
+                                <th scope="col">SUBACTIVIDAD</th>
+                                <th scope="col">SUBACTIVIDAD</th>
+                                <th scope="col">ARCHIVOS</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <?php
-
-                                  /*
-                                   * Código para mostrar datos dinámicamente en un combobox.
-                                    */
-
-                                    include 'forms/conexion.php';
-
-                                    $query = 'SELECT * FROM Documentos';
-
-                                    $result = $conexion->query($query);
-
-?>
-                            <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>
                                     <?php
 
                                         /*
@@ -139,23 +129,61 @@
 
                                         include 'forms/conexion.php';
 
-                                        $query = 'SELECT * FROM Documentos';
+                                        $query = 'SELECT * FROM Actividades';
 
                                         $result = $conexion->query($query);
 
                                     ?>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Seleccione una Actividad</option>
+                                    <option selected>Seleccione una actividad</option>
                                     <?php    
                                     while ( $row = $result->fetch_array() )    
                                     {
                                     ?>
-                                    <option value="<?php echo $row['idDocumento']; ?> " ><?php echo $row['Actividades'];?></option>
+                                    <option value="<?php echo $row['idActividades']; ?> " ><?php echo $row['Actividad'];?></option>
                                     <?php
                                      }    
                                     ?>  
                                     </select>
                                     </td>
+
+                                    <td>
+                                    <?php
+                                        include 'forms/conexion.php';
+
+                                        $query = 'SELECT idSub_Actividad, Sub_Actividad, Actividades_idActividades FROM Sub_Actividad WHERE Actividades_idActividades =1';
+
+                                        $result = $conexion->query($query);
+
+                                    ?>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>Seleccione una actividad</option>
+                                    <?php    
+                                    while ( $row = $result->fetch_array() )    
+                                    {
+                                    ?>
+                                    <option value="<?php echo $row['idSub_Actividad']; ?> " ><?php echo $row['Sub_Actividad'];?></option>
+                                    <?php
+                                     }    
+                                    ?>  
+                                    </select>
+                                    </td>
+                                    <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>MENU</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>MENU</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    </select>
+                                </td>
                                 <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected>MENU</option>
@@ -167,39 +195,21 @@
                                 <td>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>Mark</td>
-                                <td>
-                                    <?php
-
-                                        /*
-                                      * Código para mostrar datos dinámicamente en un combobox.
-                                        */
-
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT * FROM Documentos';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
+                               <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Seleccione una Actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_array() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idDocumento']; ?> " ><?php echo $row['Actividades'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
+                                    <option selected>MENU</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
                                     </select>
-                                    </td>
+                                </td>
                                 <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected>MENU</option>
@@ -211,40 +221,21 @@
                                 <td>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                                     </div>
                                 </td>
-
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td>Mark</td>
-                                <td>
-                                    <?php
-
-                                        /*
-                                      * Código para mostrar datos dinámicamente en un combobox.
-                                        */
-
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT * FROM Documentos';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
+                               <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Seleccione una Actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_array() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idDocumento']; ?> " ><?php echo $row['Actividades'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
+                                    <option selected>MENU</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
                                     </select>
-                                    </td>
+                                </td>
                                 <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected>MENU</option>
@@ -256,39 +247,21 @@
                                 <td>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                        <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
                                 <td>Mark</td>
-                                <td>
-                                    <?php
-
-                                        /*
-                                      * Código para mostrar datos dinámicamente en un combobox.
-                                        */
-
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT * FROM Documentos';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
+                               <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Seleccione una Actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_array() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idDocumento']; ?> " ><?php echo $row['Actividades'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
+                                    <option selected>MENU</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
                                     </select>
-                                    </td>
+                                </td>
                                 <td>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected>MENU</option>
@@ -300,7 +273,7 @@
                                 <td>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                                     </div>
                                 </td>
                             </tr>
