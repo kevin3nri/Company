@@ -1,17 +1,17 @@
 <?php
 
-    session_start();
+session_start();
     
-    if(!isset($_SESSION['Nombre'])){
-        echo'
-            <script>
-                alert("Por favor debes iniciar sesión");
-                window.location = "index.php";
-            </script>
-        ';
-        session_destroy();
-        die();
-    }
+if(!isset($_SESSION['Nombre'])){
+    echo'
+        <script>
+            alert("Por favor debes iniciar sesión");
+            window.location = "index.php";
+        </script>
+    ';
+    session_destroy();
+    die();
+}
   
 ?>
 
@@ -62,13 +62,9 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="portfolio.php">Portfolio</a></li>
-                    <li><a href="pricing.php">Pricing</a></li>
-                    <li><a href="blog.php">Blog</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <a><?php echo'Bienvenido'.$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
 
                 </ul>
@@ -107,22 +103,39 @@
                         <table id="datos" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
+                                    <th>Grupo</th>
+                                    <th>Docencia</th>
                                     <th>Actividades</th>
                                     <th>Archivo</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
+                                <?php
+                                 include 'forms/conexion.php';
+                                 
+                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades WHERE datos.idDatos = 1";
+                                   $result = mysqli_query($conexion,$sql);
+                                  
+                                       while($row=mysqli_fetch_assoc($result)){
+                                ?>
+                                    <tr>
+                                    <th scope="row"><?php echo $row['idDatos'] ?></th>
+                                        <td><?php echo $row['Profesión'] ?></td>
+                                        <td><?php echo $row['Nombre'] ?></td>
+                                        <td><?php echo $row['Carrera'] ?></td>
+                                        <td><?php echo $row['Archivo'] ?></td>
+                                        <td>
+                                       <button class="btn btn-primary"><a href="actualizar.php?actualizarr='.$idDatos.'" class="text-light">Actualizar</a></button>
+                                       <button class="btn btn-danger"><a href="eliminar.php?eliminarr='.$idDatos.'" class="text-light">Eliminar</a></button>
+                                       </td>
+                                       <?php
+                                       }
+                                       ?>
+                                    </tr>
+                            </tbody>    
                         </table>
                     </div>
                 </div>
@@ -164,10 +177,31 @@
     <script>
         $('#datos').DataTable({
             responsive: true,
-            autoWidth: false
+            autoWidth: false,
+
+            "language": {
+                "info":"_TOTAL_registros",
+                "search": "Buscar", 
+                "paginate":{
+                    "next": "Siguiente",
+                    "previous":"Anterior",
+                },
+                "lengthMenu": 'Mostrar <select>'+
+                           '<option value="10">10</option>'+
+                           '<option value="25">25</option>'+
+                           '<option value="50">50</option>'+
+                           '<option value="100">100</option>'+
+                           '</select> registros',
+                "loandingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coincidencias",
+                "infoEmpty": "",
+                "infoFiltered":""
+            }
         });
     </script>
-
+          
     <!-- Vendor JS Files -->
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

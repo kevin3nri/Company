@@ -62,13 +62,9 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="portfolio.php">Portfolio</a></li>
-                    <li><a href="pricing.php">Pricing</a></li>
-                    <li><a href="blog.php">Blog</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <a><?php echo'Bienvenido '.$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -118,6 +114,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>
@@ -134,10 +131,10 @@
                                         $result = $conexion->query($query);
 
                                     ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
-                                    while ( $row = $result->fetch_array() )    
+                                    while ( $row = $result->fetch_assoc() )    
                                     {
                                     ?>
                                     <option value="<?php echo $row['idActividades']; ?> " ><?php echo $row['Actividad'];?></option>
@@ -151,52 +148,93 @@
                                     <?php
                                         include 'forms/conexion.php';
 
-                                        $query = 'SELECT idSub_Actividad, Sub_Actividad, Actividades_idActividades FROM Sub_Actividad WHERE Actividades_idActividades =1';
+                                        $dc = $_POST['actividades'];
 
+                                        $query = "SELECT idSub_Actividad, sub_Actividad, Actividades_idActividades FROM sub_actividad INNER JOIN actividades ON sub_Actividad.Actividades_idActividades = actividades.idActividades WHERE Actividades_idActividades =1";
+                                        
                                         $result = $conexion->query($query);
 
                                     ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
                                     while ( $row = $result->fetch_array() )    
                                     {
                                     ?>
-                                    <option value="<?php echo $row['idSub_Actividad']; ?> " ><?php echo $row['Sub_Actividad'];?></option>
+                                    <option value="<?php echo $row['idSub_Actividad']; ?> " ><?php echo $row['sub_Actividad'];?></option>
                                     <?php
                                      }    
                                     ?>  
                                     </select>
                                     </td>
                                     <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <?php
+                                        include 'forms/conexion.php';
+
+                                        $query = 'SELECT idSub_sub_Actividades , Sub_sub_Actividad, Sub_Actividad_idSub_Actividad FROM Sub_sub_actividades INNER JOIN sub_actividad ON sub_sub_actividades.Sub_Actividad_idSub_Actividad = sub_actividad.idSub_Actividad WHERE Sub_Actividad_idSub_Actividad =1';
+
+                                        $result = $conexion->query($query);
+
+                                    ?>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividades" id="Sub_sub_Actividades">
+                                    <option selected>Seleccione una actividad</option>
+                                    <?php    
+                                    while ( $row = $result->fetch_array() )    
+                                    {
+                                    ?>
+                                    <option value="<?php echo $row['idSub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_Actividad'];?></option>
+                                    <?php
+                                     }    
+                                    ?>  
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <?php
+                                        include 'forms/conexion.php';
+
+                                        $query = 'SELECT idSub_sub_sub_Actividades , Sub_sub_sub_Actividad, Sub_sub_Actividades_idSub_sub_Actividades FROM sub_sub_sub_actividades INNER JOIN sub_sub_actividades ON sub_sub_sub_actividades.Sub_sub_Actividades_idSub_sub_Actividades = sub_sub_actividades.idSub_sub_Actividades WHERE Sub_sub_Actividades_idSub_sub_Actividades =5';
+
+                                        $result = $conexion->query($query);
+
+                                    ?>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividades" id="Sub_sub_sub_Actividades">
+                                    <option selected>Seleccione una actividad</option>
+                                    <?php    
+                                    while ( $row = $result->fetch_array() )    
+                                    {
+                                    ?>
+                                    <option value="<?php echo $row['idSub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_Actividad'];?></option>
+                                    <?php
+                                     }    
+                                    ?> 
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <?php
+                                        include 'forms/conexion.php';
+
+                                        $query = 'SELECT idSub_sub_sub_sub_Actividades , Sub_sub_sub_sub_Actividad, Sub_sub_sub_Actividades_idSub_sub_sub_Actividades FROM sub_sub_sub_sub_actividades INNER JOIN sub_sub_sub_actividades ON sub_sub_sub_sub_actividades.Sub_sub_sub_Actividades_idSub_sub_sub_Actividades = sub_sub_sub_actividades.idSub_sub_sub_Actividades WHERE Sub_sub_sub_Actividades_idSub_sub_sub_Actividades =7';
+
+                                        $result = $conexion->query($query);
+
+                                    ?>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividades" id="Sub_sub_sub_sub_Actividades">
+                                    <option selected>Seleccione una actividad</option>
+                                    <?php    
+                                    while ( $row = $result->fetch_array() )    
+                                    {
+                                    ?>
+                                    <option value="<?php echo $row['idSub_sub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_sub_Actividad'];?></option>
+                                    <?php
+                                     }    
+                                    ?> 
                                     </select>
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
-                                    </div>
+                                    <form action="subirpdf.php" method="post" enctype="multipart/form-data">
+                                        <input type="file" class="form-control" aria-label="Upload">
+                                        <button class="btn btn btn-primary" type="submit">Button</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -307,6 +345,23 @@
     </footer>
     <!-- End Footer -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script language="javascript">
+        $(document).ready(function(){
+            $("#actividades").on('change', function () {
+                $("#actividades option:selected").each(function () {
+                    idActividades =$(this).val();
+                  $.post("forms/consultas.php", { idActividades: idActividades}, function(data){
+                 $("#Sub_actividad").html(data);
+               });			
+            });
+        });
+    });
+    </script>
+
+
+
     <!-- End pluying -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>

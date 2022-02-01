@@ -24,8 +24,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- pluying -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -60,13 +61,11 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <li><a href="portfolio.php">Portfolio</a></li>
                     <li><a href="pricing.php">Pricing</a></li>
                     <li><a href="blog.php">Blog</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <a><?php echo 'Bienvenido ' .$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -96,7 +95,48 @@
         <!-- End Breadcrumbs -->
     </main>
     <!-- End #main -->
-    re
+    <section class="slider_section">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="car-body">
+                        <table id="datos" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Grupo</th>
+                                    <th>Docencia</th>
+                                    <th>Actividades</th>
+                                    <th>Archivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <?php
+                                 include 'forms/conexion.php';
+                                 
+                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades WHERE datos.idDatos = 1";
+                                   $result = mysqli_query($conexion,$sql);
+                                  
+                                       while($row=mysqli_fetch_assoc($result)){
+                                ?>
+                                    <tr>
+                                    <th scope="row"><?php echo $row['idDatos'] ?></th>
+                                        <td><?php echo $row['Profesión'] ?></td>
+                                        <td><?php echo $row['Nombre'] ?></td>
+                                        <td><?php echo $row['Carrera'] ?></td>
+                                        <td><?php echo $row['Archivo'] ?></td>
+                                       <?php
+                                       }
+                                       ?>
+                                    </tr>
+                            </tbody>    
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ======= Footer ======= -->
     <footer id="footer">
         <div class="footer-top">
@@ -122,6 +162,37 @@
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- pluying -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $('#datos').DataTable({
+            responsive: true,
+            autoWidth: false,
+
+            "language": {
+                "info":"_TOTAL_registros",
+                "search": "Buscar", 
+                "paginate":{
+                    "next": "Siguiente",
+                    "previous":"Anterior",
+                },
+                "lengthMenu": 'Mostrar <select>'+
+                           '<option value="10">10</option>'+
+                           '<option value="25">25</option>'+
+                           '<option value="50">50</option>'+
+                           '<option value="100">100</option>'+
+                           '</select> registros',
+                "loandingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coincidencias",
+                "infoEmpty": "",
+                "infoFiltered":""
+            }
+        });
+    </script>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/aos/aos.js"></script>

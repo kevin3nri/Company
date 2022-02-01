@@ -55,13 +55,11 @@ if(!isset($_SESSION['Nombre'])){
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <li><a href="portfolio.php">Portfolio</a></li>
                     <li><a href="pricing.php">Pricing</a></li>
                     <li><a href="blog.php">Blog</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <a><?php echo'Bienvenido '.$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
