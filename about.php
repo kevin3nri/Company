@@ -26,8 +26,8 @@
 
     <!-- pluying -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -111,17 +111,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
                                 <?php
                                  include 'forms/conexion.php';
                                  
-                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades WHERE datos.idDatos = 1";
+                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades";
                                    $result = mysqli_query($conexion,$sql);
                                   
                                        while($row=mysqli_fetch_assoc($result)){
                                 ?>
                                     <tr>
-                                    <th scope="row"><?php echo $row['idDatos'] ?></th>
+                                        <th scope="row"><?php echo $row['idDatos'] ?></th>
                                         <td><?php echo $row['Profesión'] ?></td>
                                         <td><?php echo $row['Nombre'] ?></td>
                                         <td><?php echo $row['Carrera'] ?></td>
@@ -164,19 +163,19 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <!-- pluying -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $('#datos').DataTable({
             responsive: true,
             autoWidth: false,
 
             "language": {
-                "info":"_TOTAL_registros",
+                "info": "_TOTAL_registros",
                 "search": "Buscar", 
-                "paginate":{
+                "paginate": {
                     "next": "Siguiente",
-                    "previous":"Anterior",
+                    "previous": "Anterior",
                 },
                 "lengthMenu": 'Mostrar <select>'+
                            '<option value="10">10</option>'+
@@ -189,7 +188,7 @@
                 "emptyTable": "No hay datos",
                 "zeroRecords": "No hay coincidencias",
                 "infoEmpty": "",
-                "infoFiltered":""
+                "infoFiltered": ""
             }
         });
     </script>

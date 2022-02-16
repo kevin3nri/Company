@@ -95,14 +95,10 @@
 
     </main>
     <!-- End #main -->
-    <section class="slider_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-14">
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">GRUPO</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">DOCENCIA</th>
                                 <th scope="col">ACTIVIDAD</th>
                                 <th scope="col">SUBACTIVIDAD</th>
@@ -114,9 +110,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                
                                 <th scope="row">1</th>
-                                <td>Mark</td>
+                                <td><?php echo $_SESSION['Nombre'];?></td>
                                 <td>
                                     <?php
 
@@ -147,10 +142,9 @@
                                     <td>
                                     <?php
                                         include 'forms/conexion.php';
-
-                                        $dc = $_POST['actividades'];
-
-                                        $query = "SELECT idSub_Actividad, sub_Actividad, Actividades_idActividades FROM sub_actividad INNER JOIN actividades ON sub_Actividad.Actividades_idActividades = actividades.idActividades WHERE Actividades_idActividades =1";
+                                         
+                                        $query = "SELECT idSub_Actividad, sub_Actividad, Actividades_idActividades FROM sub_actividad INNER JOIN actividades
+                                         ON sub_Actividad.Actividades_idActividades = actividades.idActividades";
                                         
                                         $result = $conexion->query($query);
 
@@ -158,7 +152,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
-                                    while ( $row = $result->fetch_array() )    
+                                    while ( $row = $result->fetch_assoc() )    
                                     {
                                     ?>
                                     <option value="<?php echo $row['idSub_Actividad']; ?> " ><?php echo $row['sub_Actividad'];?></option>
@@ -179,7 +173,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividades" id="Sub_sub_Actividades">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
-                                    while ( $row = $result->fetch_array() )    
+                                    while ( $row = $result->fetch_assoc() )    
                                     {
                                     ?>
                                     <option value="<?php echo $row['idSub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_Actividad'];?></option>
@@ -200,7 +194,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividades" id="Sub_sub_sub_Actividades">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
-                                    while ( $row = $result->fetch_array() )    
+                                    while ( $row = $result->fetch_assoc() )    
                                     {
                                     ?>
                                     <option value="<?php echo $row['idSub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_Actividad'];?></option>
@@ -221,7 +215,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividades" id="Sub_sub_sub_sub_Actividades">
                                     <option selected>Seleccione una actividad</option>
                                     <?php    
-                                    while ( $row = $result->fetch_array() )    
+                                    while ( $row = $result->fetch_assoc() )    
                                     {
                                     ?>
                                     <option value="<?php echo $row['idSub_sub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_sub_Actividad'];?></option>
@@ -231,9 +225,9 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <form action="subirpdf.php" method="post" enctype="multipart/form-data">
-                                        <input type="file" class="form-control" aria-label="Upload">
-                                        <button class="btn btn btn-primary" type="submit">Button</button>
+                                    <form action="forms/subirpdf.php" method="post" enctype="multipart/form-data" >
+                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf">
+                                        <button class="btn btn-primary" type="submit" name="submit" id="submit">Button</button>
                                     </form>
                                 </td>
                             </tr>
@@ -258,7 +252,7 @@
                                 </td>
                                 <td>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="pdf" data-validation-allowing="pdf">
                                         <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                                     </div>
                                 </td>
@@ -317,9 +311,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-    </section>
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -351,13 +342,13 @@
         $(document).ready(function(){
             $("#actividades").on('change', function () {
                 $("#actividades option:selected").each(function () {
-                    idActividades =$(this).val();
+                    idActividades = $(this).val();
                   $.post("forms/consultas.php", { idActividades: idActividades}, function(data){
-                 $("#Sub_actividad").html(data);
-               });			
+                  $("#Sub_actividad").html(data);
+                  });			
+                });
             });
         });
-    });
     </script>
 
 
