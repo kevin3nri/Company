@@ -14,7 +14,8 @@ if(!isset($_SESSION['Nombre'])){
     die();
 }
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>

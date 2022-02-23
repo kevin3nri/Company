@@ -1,3 +1,4 @@
+
 <?php
 
     session_start();
@@ -174,7 +175,7 @@
                                         <label form="email" class="form-label">Email</label>
                                         <input type="correo" class="form-control" name="correo">
                                     </div>
-                                    <div class=" mb-4 ">
+                                    <div class="mb-4">
                                         <label form="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" name="password">
                                     </div>
@@ -187,8 +188,7 @@
                                         <button type="submit" class="btn btn-success">Iniciar Sesión</button>
                                     </div>
                                 </form>
-
-
+                                      
                                 <div class="container w-100 my-5">
                                     <div class="row text-center">
                                         <div class="col-12">Iniciar Sesion</div>
@@ -226,6 +226,37 @@
                         </div>
                     </div>
                     <!-- customer login end -->
+                    <form action="forms/registro_usuario.php" method="POST">
+                                    <div class="mb-4">
+                                        <label form="nombre" class="form-label">Nombre</label>
+                                        <input type="nombre" class="form-control" name="nombre">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="apellido" class="form-label">Apellido</label>
+                                        <input type="apellido" class="form-control" name="apellido">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="phone" class="form-label">Telefono</label>
+                                        <input type="phone" class="form-control" name="telefono">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="email" class="form-label">Email</label>
+                                        <input type="correo" class="form-control" name="correo">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="address" class="form-label">Dirección</label>
+                                        <input type="address" class="form-control" name="dirección">
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Registro</button>
+                                    </div>
+                                </form>
+                      
+
                 </div>
             </div>
         </div>

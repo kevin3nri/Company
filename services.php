@@ -113,29 +113,19 @@
                                 <th scope="row">1</th>
                                 <td><?php echo $_SESSION['Nombre'];?></td>
                                 <td>
-                                    <?php
-
-                                        /*
-                                      * Código para mostrar datos dinámicamente en un combobox.
-                                        */
-
+                                <?php
                                         include 'forms/conexion.php';
-
-                                        $query = 'SELECT * FROM Actividades';
-
+                                         
+                                        $query = "SELECT * FROM actividades";
+                                        
                                         $result = $conexion->query($query);
 
                                     ?>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
                                     <option selected>Seleccione una actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_assoc() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idActividades']; ?> " ><?php echo $row['Actividad'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
+                                    <?php while ( $row = $result->fetch_assoc() ) { ?>
+                                    <option value="<?php echo $row["idActividades"]; ?> " ><?php echo $row["Actividad"];?></option> 
+                                    <?php } ?>
                                     </select>
                                     </td>
 
