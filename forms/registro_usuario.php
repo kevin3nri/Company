@@ -1,32 +1,64 @@
 <?php
-    include 'conexion.php';
+    
+    include ("conexion.php");
+    
+    $matrucula = $_POST['id'];
+    $usuario = $_POST['Nombre'];
+    $apellido = $_POST['Apellido'];
+    $phone = $_POST['Telefono'];
+    $correo = $_POST['Correo'];
+    $contraseña = $_POST['Password'];
+    $contraseña = md5($_POST['Password']);
+    $address = $_POST['Dirección'];
+    $estudio = $_POST['Estudios'];
+    
 
-    $usuario = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $phone = $_POST['telefono'];
-    $correo = $_POST['correo'];
-    $contraseña = $_POST['password'];
-    $address = $_POST['dirección'];
-
-    $query ="INSERT INTO personal(0,Nombre, Apellido, Telefono, Correo, Password, Dirección)
-    VALUES ('', '$usuario', '$apellido','$phone' ,'$correo', '$contraseña', '$address')";
-
-    $ejecutar = mysqli_query($conexion, $query);
-
-    if($ejecutar){
+    $sql1 = "INSERT INTO personal(idPersonal, Nombre, Apellido, Telefono, Correo, Password, Dirección, Rol_idRol, Grado_Estudios_idEstudios)
+     VALUES ('$matrucula', '$usuario', '$apellido', '$phone', '$correo', '$contraseña', '$address', 2 ,'$estudio')";
+    
+    // verificar que el correo no se repita en la base de datos
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM personal WHERE Correo='$correo'");
+ 
+    if(mysqli_num_rows($verificar_correo) > 0){
         echo '
-           <script>
-                alert("Usuario almacenado exitosamente");
-                window.location = " ../index.php";
-           </script>
+            <script>
+                alert("Este correo ya esta registrado, intenta con otro diferente");
+                window.location = "../index.php";
+            </script>
         ';
+        exit();
+    }
+
+    // verificar que el usuario no se repita en la base de datos
+    $verificar_usuario = mysqli_query($conexion, "SELECT * FROM personal WHERE Nombre='$usuario'");
+ 
+    if(mysqli_num_rows($verificar_usuario) > 0){
+        echo '
+            <script>
+                alert("Este usuario ya esta registrado, intenta con otro diferente");
+                window.location = "../index.php";
+            </script>
+        ';
+        exit();
+    }
+
+    $dato = mysqli_query($conexion, $sql1);
+
+    if($dato){
+        echo '
+        <script>
+            alert("Usuario Almacenado Exitosamente");
+            window.location = "../index.php";
+        </script>
+    ';
     }else{
         echo '
-           <script>
-                alert("Intentalo de nuevo,usuario no almacenado");
-                window.location = "../index.php";
-           </script>
-        ';
+        <script>
+            alert("Intentalo de nuevo, Usuario no almacenado");
+            window.location = "../index.php";
+        </script>
+    ';
+
+    mysqli_close($conexion); 
     }
-    mysqli_close($conexion);
 ?>

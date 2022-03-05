@@ -59,7 +59,7 @@
                     <li><a href="pricing.php">Pricing</a></li>
                     <li><a href="blog.php">Blog</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li><a href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
+                    <li><a href="#exampleModalToggle" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -164,11 +164,11 @@
     </footer>
     <!-- End Footer -->
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Bienvenido</h5>
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Bienvenido</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -180,7 +180,7 @@
                                         <label form="email" class="form-label">Email</label>
                                         <input type="correo" class="form-control" name="correo">
                                     </div>
-                                    <div class=" mb-4 ">
+                                    <div class="mb-4">
                                         <label form="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" name="password">
                                     </div>
@@ -190,52 +190,73 @@
                                         <label for="connected" class="form-check-label">Mantenerte conectado</label>
                                     </div>
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+                                        <button type="submit" class="btn btn-success"><img src="assets/img/user.png" width="30" alt="">Iniciar Sesión</button>
                                     </div>
-                                </form>
-
-
-                                <div class="container w-100 my-5">
-                                    <div class="row text-center">
-                                        <div class="col-12">Iniciar Sesion</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <button class="btn btn-outline-primary w-100 my-1">
-                                             <a href="http://facebook.com">
-                                                <div class="row align-items-center">
-                                                    <div class="col-2">
-                                                      <img src="assets/img/facebook.png" width="37" alt="">
-                                                    </div>
-                                                    <div class="col-10 text-center">
-                                                     Facebook
-                                                    </div>
-                                               </div>
-                                            </button>
-                                            <div class="col">
-                                                <button class="btn btn-outline-danger w-100 my-1">
-                                                   <a href="http://gmail.com">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-2">
-                                                            <img src="assets/img/google.png" width="32" alt="">
-                                                        </div>
-                                                        <div class="col-10 text-center">
-                                                          Google
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form> 
                             </div>
                         </div>
                     </div>
-                    <!-- customer login end -->
+                </div>
+               <div class="modal-footer">
+                    <a class="btn btn-primary" href="http://facebook.com"><img src="assets/img/facebook.png" width="30">Facebook</a>
+                    <a class="btn btn-danger" href="http://gmail.com"><img src="assets/img/google.png" width="26">Google</a>  
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Registrar</button>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <form action="forms/registro_usuario.php" method="POST">
+                                    <div class="mb-4">
+                                        <label form="nombre" class="form-label">Nombre</label>
+                                        <input type="nombre" class="form-control" name="nombre">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="apellido" class="form-label">Apellido</label>
+                                        <input type="apellido" class="form-control" name="apellido">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="telefono" class="form-label">Telefono</label>
+                                        <input type="telefono" class="form-control" name="telefono">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="email" class="form-label">Email</label>
+                                        <input type="correo" class="form-control" name="correo">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="dirección" class="form-label">Dirección</label>
+                                        <input type="dirección" class="form-control" name="dirección">
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal end -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->

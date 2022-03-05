@@ -94,16 +94,16 @@ if(!isset($_SESSION['Nombre'])){
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
-                        <h3>Tecnologico de Estudios Superiores de Chalco</h3>
-                        <div class="col-lg-3 col-md-6 footer-contact">
-                            <br><strong>Adress: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
-                        </div>
-                        <div class="col-lg-3 col-md-6 ">
-                            <br><strong>Phone: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
-                        </div>
-                        <div class="col-lg-3 col-md-6 ">
-                            <br><strong>Email: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
-                        </div>
+                    <h3>Tecnologico de Estudios Superiores de Chalco</h3>
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <br><strong>Dirección: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
+                    </div>
+                    <div class="col-lg-3 col-md-6 ">
+                        <br><strong>Telefono: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
+                    </div>
+                    <div class="col-lg-3 col-md-6 ">
+                        <br><strong>Correo: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
+                    </div>
                         <center>
                             <p>kevin enrique & pedro angel @ 2021 | TESCHA-Ingeniería Informática</p>
                         </center>

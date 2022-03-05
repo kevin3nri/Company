@@ -1,17 +1,20 @@
 <?php
-$html = "";
-if ($_POST["idActividades"]==1) {
-	$html = "<option value=".$row["idActividades"]." > ".$_POST["Actividad"]." ".$row["Actividad"]."</option>";	
-}
-if ($_POST["idActividades"]==2) {
-	$html = "<option value=".$row["idActividades"]." > ".$_POST["idActividades"]." ".$row["Actividad"]."</option>";
-}
-if ($_POST["idActividades"]==3) {
-	$html = "<option value=".$row["idActividades"]." > ".$_POST["idActividades"]." ".$row["Actividad"]."</option>";
-}
-if ($_POST["idActividades"]==4) {
-	$html = "<option value=".$row["idActividades"]." > ".$_POST["idActividades"]." ".$row["Actividad"]."</option>";	
-}
+include 'conexion.php';
 
-echo $html;	
+$idActividades = (isset($_POST['idActividades'])) ? $_POST['idActividades'] : '';
+
+$users_arr = array();
+
+$sql = "SELECT idSub_Actividad, sub_Actividad as nombre, Actividades_idActividades 
+FROM sub_actividad where Actividades_idActividades = '$idActividades'";
+$result = mysqli_query($conexion, $sql);
+if (mysqli_num_rows($result) > 0) {
+   while( $row = mysqli_fetch_array($result) ){
+      $nombre = $row['nombre'] ;
+      $idSub_Actividad = $row['idSub_Actividad'] ;
+      $users_arr[] = array("nombre" => $nombre, "idSub_Actividad" => $idSub_Actividad);
+   }
+}
+echo json_encode($users_arr);
+$conexion = null;
 ?>

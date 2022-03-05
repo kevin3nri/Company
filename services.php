@@ -37,7 +37,7 @@
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!--<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">-->
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -113,209 +113,214 @@
                                 <th scope="row">1</th>
                                 <td><?php echo $_SESSION['Nombre'];?></td>
                                 <td>
-                                <?php
-                                        include 'forms/conexion.php';
-                                         
-                                        $query = "SELECT * FROM actividades";
+                                    <?php
+                                    include 'forms/conexion.php';
                                         
-                                        $result = $conexion->query($query);
+                                    $query = "SELECT * FROM actividades";
+                                    
+                                    $result = $conexion->query($query);
 
                                     ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
+                                <option selected>Seleccione una actividad</option>
+                                <?php while ( $row = $result->fetch_assoc() ) { ?>
+                                <option value="<?php echo $row["idActividades"]; ?>" ><?php echo $row["Actividad"];?></option> 
+                                <?php } ?>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividad" id="Sub_sub_Actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividad" id="Sub_sub_sub_Actividad">
                                     <option selected>Seleccione una actividad</option>
-                                    <?php while ( $row = $result->fetch_assoc() ) { ?>
-                                    <option value="<?php echo $row["idActividades"]; ?> " ><?php echo $row["Actividad"];?></option> 
-                                    <?php } ?>
-                                    </select>
-                                    </td>
-
-                                    <td>
-                                    <?php
-                                        include 'forms/conexion.php';
-                                         
-                                        $query = "SELECT idSub_Actividad, sub_Actividad, Actividades_idActividades FROM sub_actividad INNER JOIN actividades
-                                         ON sub_Actividad.Actividades_idActividades = actividades.idActividades";
-                                        
-                                        $result = $conexion->query($query);
-
-                                    ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
-                                    <option selected>Seleccione una actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_assoc() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idSub_Actividad']; ?> " ><?php echo $row['sub_Actividad'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
-                                    </select>
-                                    </td>
-                                    <td>
-                                    <?php
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT idSub_sub_Actividades , Sub_sub_Actividad, Sub_Actividad_idSub_Actividad FROM Sub_sub_actividades INNER JOIN sub_actividad ON sub_sub_actividades.Sub_Actividad_idSub_Actividad = sub_actividad.idSub_Actividad WHERE Sub_Actividad_idSub_Actividad =1';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividades" id="Sub_sub_Actividades">
-                                    <option selected>Seleccione una actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_assoc() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idSub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_Actividad'];?></option>
-                                    <?php
-                                     }    
-                                    ?>  
                                     </select>
                                 </td>
                                 <td>
-                                <?php
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT idSub_sub_sub_Actividades , Sub_sub_sub_Actividad, Sub_sub_Actividades_idSub_sub_Actividades FROM sub_sub_sub_actividades INNER JOIN sub_sub_actividades ON sub_sub_sub_actividades.Sub_sub_Actividades_idSub_sub_Actividades = sub_sub_actividades.idSub_sub_Actividades WHERE Sub_sub_Actividades_idSub_sub_Actividades =5';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividades" id="Sub_sub_sub_Actividades">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividad" id="Sub_sub_sub_sub_Actividad">
                                     <option selected>Seleccione una actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_assoc() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idSub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_Actividad'];?></option>
-                                    <?php
-                                     }    
-                                    ?> 
-                                    </select>
-                                </td>
-                                <td>
-                                <?php
-                                        include 'forms/conexion.php';
-
-                                        $query = 'SELECT idSub_sub_sub_sub_Actividades , Sub_sub_sub_sub_Actividad, Sub_sub_sub_Actividades_idSub_sub_sub_Actividades FROM sub_sub_sub_sub_actividades INNER JOIN sub_sub_sub_actividades ON sub_sub_sub_sub_actividades.Sub_sub_sub_Actividades_idSub_sub_sub_Actividades = sub_sub_sub_actividades.idSub_sub_sub_Actividades WHERE Sub_sub_sub_Actividades_idSub_sub_sub_Actividades =7';
-
-                                        $result = $conexion->query($query);
-
-                                    ?>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividades" id="Sub_sub_sub_sub_Actividades">
-                                    <option selected>Seleccione una actividad</option>
-                                    <?php    
-                                    while ( $row = $result->fetch_assoc() )    
-                                    {
-                                    ?>
-                                    <option value="<?php echo $row['idSub_sub_sub_sub_Actividades']; ?> " ><?php echo $row['Sub_sub_sub_sub_Actividad'];?></option>
-                                    <?php
-                                     }    
-                                    ?> 
                                     </select>
                                 </td>
                                 <td>
                                     <form action="forms/subirpdf.php" method="post" enctype="multipart/form-data" >
-                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf">
-                                        <button class="btn btn-primary" type="submit" name="submit" id="submit">Button</button>
+                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf" name="archivo" id="archivo">
+                                        <button class="btn btn-primary" type="submit" >Button</button>
                                     </form>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>Mark</td>
-                               <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <td><?php echo $_SESSION['Nombre'];?></td>
+                                <td>
+                                    <?php
+                                    include 'forms/conexion.php';
+                                        
+                                    $query = "SELECT * FROM actividades";
+                                    
+                                    $result = $conexion->query($query);
+
+                                    ?>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
+                                <option selected>Seleccione una actividad</option>
+                                <?php while ( $row = $result->fetch_assoc() ) { ?>
+                                <option value="<?php echo $row["idActividades"]; ?>" ><?php echo $row["Actividad"];?></option> 
+                                <?php } ?>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividad" id="Sub_sub_Actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividad" id="Sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividad" id="Sub_sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="pdf" data-validation-allowing="pdf">
-                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
-                                    </div>
+                                    <form action="forms/subirpdf.php" method="post" enctype="multipart/form-data" >
+                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf" name="archivo" id="archivo">
+                                        <button class="btn btn-primary" type="submit" >Button</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Mark</td>
-                               <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <td><?php echo $_SESSION['Nombre'];?></td>
+                                <td>
+                                    <?php
+                                    include 'forms/conexion.php';
+                                        
+                                    $query = "SELECT * FROM actividades";
+                                    
+                                    $result = $conexion->query($query);
+
+                                    ?>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
+                                <option selected>Seleccione una actividad</option>
+                                <?php while ( $row = $result->fetch_assoc() ) { ?>
+                                <option value="<?php echo $row["idActividades"]; ?>" ><?php echo $row["Actividad"];?></option> 
+                                <?php } ?>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividad" id="Sub_sub_Actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividad" id="Sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividad" id="Sub_sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
-                                    </div>
+                                    <form action="forms/subirpdf.php" method="post" enctype="multipart/form-data" >
+                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf" name="archivo" id="archivo">
+                                        <button class="btn btn-primary" type="submit" >Button</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>Mark</td>
-                               <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <td><?php echo $_SESSION['Nombre'];?></td>
+                                <td>
+                                    <?php
+                                    include 'forms/conexion.php';
+                                        
+                                    $query = "SELECT * FROM actividades";
+                                    
+                                    $result = $conexion->query($query);
+
+                                    ?>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="actividades" id="actividades">
+                                <option selected>Seleccione una actividad</option>
+                                <?php while ( $row = $result->fetch_assoc() ) { ?>
+                                <option value="<?php echo $row["idActividades"]; ?>" ><?php echo $row["Actividad"];?></option> 
+                                <?php } ?>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_actividad" id="Sub_actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_Actividad" id="Sub_sub_Actividad">
+                                    <option value="">Seleccione una actividad</option>
+                                </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_Actividad" id="Sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>MENU</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Sub_sub_sub_sub_Actividad" id="Sub_sub_sub_sub_Actividad">
+                                    <option selected>Seleccione una actividad</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                        <button class="btn btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
-                                    </div>
+                                    <form action="forms/subirpdf.php" method="post" enctype="multipart/form-data" >
+                                        <input type="file" class="form-control" aria-label="Upload" accept="pdf" data-validation-allowing="pdf" name="archivo" id="archivo">
+                                        <button class="btn btn-primary" type="submit" >Button</button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
     <!-- ======= Footer ======= -->
     <footer id="footer">
-
         <div class="footer-top">
             <div class="container">
                 <div class="row">
                     <h3>Tecnologico de Estudios Superiores de Chalco</h3>
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <br><strong>Adress: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
+                        <br><strong>Dirección: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
-                        <br><strong>Phone: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
+                        <br><strong>Telefono: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
-                        <br><strong>Email: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
+                        <br><strong>Correo: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
                     </div>
                     <center>
                         <p>kevin enrique & pedro angel @ 2021 | TESCHA-Ingeniería Informática</p>
@@ -329,18 +334,137 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script language="javascript">
-        $(document).ready(function(){
-            $("#actividades").on('change', function () {
-                $("#actividades option:selected").each(function () {
-                    idActividades = $(this).val();
-                  $.post("forms/consultas.php", { idActividades: idActividades}, function(data){
-                  $("#Sub_actividad").html(data);
-                  });			
+        $(document).ready(function(){            
+            $("#actividades").on('change', function () {//cuando actividades cambia de valor se ejecuta toda la función de abajo
+                idActividades = $(this).val();
+                console.log("valor de idactividades = " + idActividades);//imprimir en consola
+                //petición ajax
+                $.ajax({
+                    url: 'forms/consultas.php',
+                    type: 'post',
+                    dataType: 'json',
+                    //enviar al archivo php la variable
+                    data: {
+                        idActividades : idActividades
+                    },
+                    //si el resultado es satisfactorio realiza la siguiente acción
+                    success: function (response) {
+                        var len = response.length; //longitud de arreglo
+                        $("#Sub_actividad").empty();//borra las opciones que hay dentro del select antes de meter las respuestas del php
+                        $("#Sub_actividad").prepend("<option value=''></option>");//agrega una option vacia
+                        for (var i = 0; i < len; i++) {//ciclo for del tamaño del arreglo obtenido
+                            var nombre = response[i]['nombre'];//guardar en variable nombre la columna de nombre de consulta en php
+                            var idSub_Actividad = response[i]['idSub_Actividad'];
+                            $("#Sub_actividad").append("<option value='" + idSub_Actividad + "'>" + nombre + "</option>");//agrega las opciones obtenidas del php
+                            //console.log("nombre = " + nombre); //imprime en consola de la pagina las variables obtenidas del php
+                        }
+                        //console.log("len = " + len);
+                    },
+                    error: function() { 
+                        //console.log("Error");
+                    }   
                 });
             });
         });
-    </script>
 
+        //2
+                    
+        $("#Sub_actividad").on('change', function () {//cuando actividades cambia de valor se ejecuta toda la función de abajo
+            idSub_Actividad = $(this).val();
+            console.log("valor de idSub_Actividad = " + idSub_Actividad);//imprimir en consola
+            //petición ajax
+            $.ajax({
+                url: 'forms/consulta2.php',
+                type: 'post',
+                dataType: 'json',
+                //enviar al archivo php la variable
+                data: {
+                    idSub_Actividad : idSub_Actividad
+                },
+                //si el resultado es satisfactorio realiza la siguiente acción
+                success: function (response) {
+                    var len = response.length; //longitud de arreglo
+                    $("#Sub_sub_Actividad").empty();//borra las opciones que hay dentro del select antes de meter las respuestas del php
+                    $("#Sub_sub_Actividad").prepend("<option value=''></option>");//agrega una option vacia
+                    for (var i = 0; i < len; i++) {//ciclo for del tamaño del arreglo obtenido
+                        var nombre = response[i]['nombre'];
+                        var idSub_sub_Actividades = response[i]['idSub_sub_Actividades'];//guardar en variable nombre la columna de nombre de consulta en php
+                        $("#Sub_sub_Actividad").append("<option value='" + idSub_sub_Actividades + "'>" + nombre + "</option>");//agrega las opciones obtenidas del php
+                        //console.log("idSub_Actividad = " + idSub_Actividad); //imprime en consola de la pagina las variables obtenidas del php
+                    }
+                    // console.log("len = " + len);
+                },
+                error: function() { 
+                    // console.log("Error");
+                }   
+            });
+        });
+        //3
+        $("#Sub_sub_Actividad").on('change', function () {//cuando actividades cambia de valor se ejecuta toda la función de abajo
+            idSub_sub_Actividades = $(this).val();
+            console.log("valor de idSub_sub_Actividades = " + idSub_sub_Actividades);//imprimir en consola
+            //petición ajax
+            $.ajax({
+                url: 'forms/consulta3.php',
+                type: 'post',
+                dataType: 'json',
+                //enviar al archivo php la variable
+                data: {
+                    idSub_sub_Actividades : idSub_sub_Actividades
+                },
+                //si el resultado es satisfactorio realiza la siguiente acción
+                success: function (response) {
+                    var len = response.length; //longitud de arreglo
+                    $("#Sub_sub_sub_Actividad").empty();//borra las opciones que hay dentro del select antes de meter las respuestas del php
+                    $("#Sub_sub_sub_Actividad").prepend("<option value=''></option>");//agrega una option vacia
+                    for (var i = 0; i < len; i++) {//ciclo for del tamaño del arreglo obtenido
+                        var nombre = response[i]['nombre'];
+                        var idSub_sub_sub_Actividades = response[i]['idSub_sub_sub_Actividades'];//guardar en variable nombre la columna de nombre de consulta en php
+                        $("#Sub_sub_sub_Actividad").append("<option value='" + idSub_sub_sub_Actividades + "'>" + nombre + "</option>");//agrega las opciones obtenidas del php
+                        //console.log("idSub_sub_Actividades = " + idSub_sub_Actividades); //imprime en consola de la pagina las variables obtenidas del php
+                    }
+                    // console.log("len = " + len);
+                },
+                error: function() { 
+                    // console.log("Error");
+                }   
+            });
+        });          
+        //4       
+        $("#Sub_sub_sub_Actividad").on('change', function () {//cuando actividades cambia de valor se ejecuta toda la función de abajo
+            idSub_sub_sub_Actividades = $(this).val();
+            console.log("valor de idSub_sub_sub_Actividades = " + idSub_sub_sub_Actividades);//imprimir en consola
+            //petición ajax
+            $.ajax({
+                url: 'forms/consulta4.php',
+                type: 'post',
+                dataType: 'json',
+                //enviar al archivo php la variable
+                data: {
+                    idSub_sub_sub_Actividades : idSub_sub_sub_Actividades
+                },
+                //si el resultado es satisfactorio realiza la siguiente acción
+                success: function (response) {
+                    var len = response.length; //longitud de arreglo
+                    $("#Sub_sub_sub_sub_Actividad").empty();//borra las opciones que hay dentro del select antes de meter las respuestas del php
+                    $("#Sub_sub_sub_sub_Actividad").prepend("<option value=''></option>");//agrega una option vacia
+                    for (var i = 0; i < len; i++) {//ciclo for del tamaño del arreglo obtenido
+                        var nombre = response[i]['nombre'];
+                        var idSub_sub_sub_sub_Actividades = response[i]['idSub_sub_sub_sub_Actividades'];//guardar en variable nombre la columna de nombre de consulta en php
+                        $("#Sub_sub_sub_sub_Actividad").append("<option value='" + idSub_sub_sub_sub_Actividades + "'>" + nombre + "</option>");//agrega las opciones obtenidas del php
+                        //console.log("idSub_sub_sub_Actividades = " + idSub_sub_sub_Actividades); //imprime en consola de la pagina las variables obtenidas del php
+                    }
+                    //console.log("len = " + len);
+                },
+                error: function() { 
+                    //console.log("Error");
+                }   
+            });
+        });
+            
+    </script>
+   
+        
 
 
     <!-- End pluying -->
@@ -359,7 +483,7 @@
     <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
 
 </body>
 
