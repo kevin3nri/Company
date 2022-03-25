@@ -64,7 +64,7 @@ if(!isset($_SESSION['Nombre'])){
                 <ul>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="portfolio.php">Portfolio</a></li>
-                    <a><?php echo'Bienvenido'.$_SESSION['Nombre'];?></a>
+                    <a><?php echo'Bienvenido '.$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
 
                 </ul>
@@ -111,7 +111,9 @@ if(!isset($_SESSION['Nombre'])){
                                 <?php
                                  include 'forms/conexion.php';
                                  
-                                   $sql="SELECT datos.idDatos, personal.Nombre, carreras.Carrera FROM datos INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera WHERE personal.idPersonal = 1";
+                                   $sql="SELECT datos.idDatos, personal.Nombre, carreras.Carrera FROM datos INNER JOIN 
+                                   personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON 
+                                   datos.Carreras_idCarrera = carreras.idCarrera WHERE personal.idPersonal = 1";
                                    $result = mysqli_query($conexion,$sql);
                                   
                                        while($row=mysqli_fetch_assoc($result)){
@@ -122,7 +124,7 @@ if(!isset($_SESSION['Nombre'])){
                                         <td><?php echo $row['Carrera'] ?></td>
                                         <td><?php echo $row['Archivo'] ?></td>
                                         <td>
-                                       <button class="btn btn-primary"><a href="actualizar.php?actualizarr='.$idDatos.'" class="text-light">Actualizar</a></button>
+                                       <button class="btn btn-primary"><a href="actualizar.php?actualizarr='.$idDatos.'" class="text-light">descargar</a></button>
                                        <button class="btn btn-danger"><a href="eliminar.php?eliminarr='.$idDatos.'" class="text-light">Eliminar</a></button>
                                        </td>
                                        <?php
@@ -144,13 +146,13 @@ if(!isset($_SESSION['Nombre'])){
                         <br><strong>Dirección: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
-                        <br><strong>Telefono: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
+                        <br><strong>Telefono: </strong>(0155) 59823503, 59823504, 59820848 y 59821089 <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
                         <br><strong>Correo: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
                     </div>
                     <center>
-                        <p>kevin enrique & pedro angel @ 2021 | TESCHA-Ingeniería Informática</p>
+                        <p>kevin enrique @ 2022 | TESCHA-Ingeniería Informática</p>
                     </center>
                 </div>
             </div>

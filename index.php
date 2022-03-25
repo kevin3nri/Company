@@ -74,7 +74,6 @@
                         <li>
                             <a href="index.php"></a>
                         </li>
-
                     </ol>
                 </div>
 
@@ -144,13 +143,13 @@
                         <br><strong>Dirección: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
-                        <br><strong>Telefono: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
+                        <br><strong>Telefono: </strong>(0155) 59823503, 59823504, 59820848 y 59821089 <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
                         <br><strong>Correo: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
                     </div>
                     <center>
-                        <p>kevin enrique & pedro angel @ 2021 | TESCHA-Ingeniería Informática</p>
+                        <p>kevin enrique @ 2022 | TESCHA-Ingeniería Informática</p>
                     </center>
                 </div>
             </div>
@@ -235,6 +234,10 @@
                                     <div class="mb-4">
                                         <label form="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" name="Password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label form="password" class="form-label">Confirmar Password</label>
+                                        <input type="password" class="form-control" name="passwordconfirm">
                                     </div>
                                     <div class="mb-4">
                                         <label form="dirección" class="form-label">Dirección</label>

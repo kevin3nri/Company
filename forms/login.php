@@ -1,9 +1,8 @@
 <?php
-
     session_start();
 
     include ("conexion.php");
-
+        
     $correo = $_POST['correo'];
     $password = $_POST['password'];
     $password = md5($_POST['password']);

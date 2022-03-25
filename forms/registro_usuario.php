@@ -9,11 +9,14 @@
     $correo = $_POST['Correo'];
     $contraseña = $_POST['Password'];
     $contraseña = md5($_POST['Password']);
+    $confirmar = $_POST['passwordconfirm'];
     $address = $_POST['Dirección'];
     $estudio = $_POST['Estudios'];
-    
 
-    $sql1 = "INSERT INTO personal(idPersonal, Nombre, Apellido, Telefono, Correo, Password, Dirección, Rol_idRol, Grado_Estudios_idEstudios)
+if($_POST['Password']==$_POST['passwordconfirm']){
+
+    $sql1 = "INSERT INTO personal(idPersonal, Nombre, Apellido, Telefono, Correo, Password, Dirección, Rol_idRol,
+     Grado_Estudios_idEstudios)
      VALUES ('$matrucula', '$usuario', '$apellido', '$phone', '$correo', '$contraseña', '$address', 2 ,'$estudio')";
     
     // verificar que el correo no se repita en la base de datos
@@ -59,6 +62,24 @@
         </script>
     ';
 
-    mysqli_close($conexion); 
     }
+
+echo '
+<script>
+    alert("Usuario Almacenado Exitosamente");
+    window.location = "../index.php";
+</script>
+';
+
+}else{
+ 
+echo '
+    <script>
+        alert("Intentalo de nuevo, contraseña no coinsiden");
+        window.location = "../index.php";
+    </script>
+';
+
+mysqli_close($conexion); 
+}
 ?>

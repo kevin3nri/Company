@@ -62,9 +62,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a href="about.php">About</a></li>
-                    <li><a href="pricing.php">Pricing</a></li>
                     <li><a href="blog.php">Blog</a></li>
-                    <li><a href="contact.php">Contact</a></li>
                     <a><?php echo 'Bienvenido ' .$_SESSION['Nombre'];?></a>
                     <li><a href="forms/cerrar_sesion.php">Cerrar</a></li>
                 </ul>
@@ -114,7 +112,10 @@
                                 <?php
                                  include 'forms/conexion.php';
                                  
-                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades";
+                                   $sql="SELECT datos.idDatos, matricula.Profesión, personal.Nombre, carreras.Carrera, actividades.Archivo FROM
+                                    datos INNER JOIN matricula ON datos.Matricula_idMatricula = matricula.idMatricula INNER JOIN personal ON 
+                                    personal.idPersonal = datos.Personal_idPersonal INNER JOIN carreras ON datos.Carreras_idCarrera = carreras.idCarrera 
+                                    INNER JOIN actividades ON datos.Actividades_idActividades = actividades.idActividades";
                                    $result = mysqli_query($conexion,$sql);
                                   
                                        while($row=mysqli_fetch_assoc($result)){
@@ -146,13 +147,13 @@
                         <br><strong>Dirección: </strong>Carretera Federal México Cuautla s/n, La Candelaria Tlapala, Chalco, Edo. de México <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
-                        <br><strong>Telefono: </strong>(0155) 59823503,59823504,59820848, y 59821089 <br>
+                        <br><strong>Telefono: </strong>(0155) 59823503, 59823504, 59820848 y 59821089 <br>
                     </div>
                     <div class="col-lg-3 col-md-6 ">
                         <br><strong>Correo: </strong>teschalco@hotmail.com depto.controlescolar@tesch.edu.mx <br>
                     </div>
                     <center>
-                        <p>kevin enrique & pedro angel @ 2021 | TESCHA-Ingeniería Informática</p>
+                        <p>kevin enrique @ 2022 | TESCHA-Ingeniería Informática</p>
                     </center>
                 </div>
             </div>
